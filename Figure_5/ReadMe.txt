@@ -11,3 +11,5 @@ coreFecalProteomeCompiler.m
 
 4. Find overlap using Venn Diagrams- from VennMaster
 http://sysbio.uni-ulm.de/?Software:VennMaster
+- load txt files to view overlap. 
+Example to view overlap between the colon proteome and fecal proteome load proxColonCoreGutProteomeOFAllColonizationStatesVsCoreFecalProteome.txt in vennMaster 
