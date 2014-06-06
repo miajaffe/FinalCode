@@ -9,3 +9,4 @@ save('OverlordMatrix.mat','OverlordMatrix')
 save('axes','axes');
 save('PeptideMap.mat','PeptideMap');
 save('LetterMap.mat','LetterMap');
+[normOverlord,redundancies] = OverlordNormalizer();
