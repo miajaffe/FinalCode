@@ -48,4 +48,5 @@ end
 % The total intersection represents the number of proteins found across all
 % samples in at least one of the replicates
 total_intersection = mintersect(total_indices{1}, total_indices{2}, total_indices{3}, total_indices{4}, total_indices{5}, total_indices{6}, total_indices{7}, total_indices{8}, total_indices{9}, total_indices{10}, total_indices{11}, total_indices{12}, total_indices{13}, total_indices{14}, total_indices{15})
-
+proteins = protIds';
+intersect_prot = proteins(total_intersection);
