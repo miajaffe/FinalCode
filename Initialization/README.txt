@@ -12,6 +12,7 @@ pythonProcessor.m
 GOTally.m
 GOTally_shannon.m
 getAllGODef.m
+GOtitleToGOcode.m
 ---
 System Requirements:
 Matlab 2014a
@@ -44,3 +45,4 @@ GOtoIndexConverter.mat, GOtoIndexConverterStr.mat, IndextoGOConverter.mat,
 IndextoGOConverterStr.mat
 3) GOTally_shannon.m/GOArray.mat, normOverlord_shannon.mat, axes.mat/GOenrichMat_shannon.mat
 4) getAllGODef.m/GOtoIndexConverter/allGODic.mat
+5) GOtitleToGOcode.m/GOenrichMat.mat, axes.mat, GOtindexConverterStr.mat, allGODic.mat/titleToGO.mat

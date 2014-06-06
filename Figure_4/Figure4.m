@@ -6,13 +6,13 @@
 clear all
 close all
 % clc
-load GOenrichMat
-load GOenrichMat_shannon
-load axes
-load GOtoIndexConverterStr
-load IndextoGOConverterStr
-load allGODic
-load titleToGO
+load('../Initialization/GOenrichMat')
+load('../Initialization/GOenrichMat_shannon')
+load('../Initialization/axes')
+load('../Initialization/GOtoIndexConverterStr')
+load('../Initialization/IndextoGOConverterStr')
+load('../Initialization/allGODic')
+load('../Initialization/titleToGO')
 %% Find GO codes with q-value <= 0.01
 allGO = keys(GOtoIndexConverterStr);
 % Computes the p-value associated with anova1 between all three

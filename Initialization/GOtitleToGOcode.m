@@ -8,10 +8,8 @@ clear all
 close all
 clc
 load GOenrichMat
-load GOenrichMat_shannon
 load axes
 load GOtoIndexConverterStr
-load IndextoGOConverterStr
 load allGODic
 temp = values(allGODic);
 temp2 = keys(allGODic);
