@@ -3,10 +3,10 @@
 % to only find those which occur.  Next, this script assigns a unique numerical
 % value to each GO ID, e.g. 1 == GO ID 15.  Lastly, this script finds
 % tallies the normalized amount of GO IDs for each GO ID for each sample
-% and saves this data to file.  The final output is a 1 x 3013 x 3 x 3 x 5
-% matrix, where 3013 corresponds to the number of GO IDs, and 3 3 5
+% and saves this data to file.  The final output is a 1 x 2991 x 3 x 3 x 5
+% matrix, where 2991 corresponds to the number of GO IDs, and 3 3 5
 % correspond to the number of samples.  Note that this essentially converts
-% from the 876 non-decoy proteins to 3013 GO IDs.  This script uses the
+% from the 843 non-decoy proteins to 3013 GO IDs.  This script uses the
 % normOverlord_shannon file.
 clear all
 close all
@@ -59,7 +59,7 @@ end
 % the statics and dynamics are of the GO codes
 %%
 % Generates a "standard" GO matrix; it is known from the above that there
-% are a total of 3013 unique GO codes in this entire dataset.  This chunk
+% are a total of 2991 unique GO codes in this entire dataset.  This chunk
 % tallies up the occurence of each GO code for each and every protein in
 % the dataset: dimension 1 corresponds to protein, dimension 2 corresponds
 % to GO codes.  For example, say protein 1 has GO codes for indeces 3, 500,

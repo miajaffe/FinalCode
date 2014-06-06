@@ -1,4 +1,6 @@
-% GET ALL THE GO CODE TITLES.
+% GET ALL THE GO CODE TITLES. Parses the European Bioinformatics Institute
+% site for the GO title associated with each and every occuring GO ID and
+% records each GO ID: GO title pair in a Map container named allGODic.
 clear all
 clc
 load GOtoIndexConverter
@@ -17,6 +19,9 @@ end
 
 % Store annotation and definition in a Map with GO ID as key
 allGODic = containers.Map();
+% For each and every GO ID, conduct a url search to retrieve the
+% corresponding GO title and add to allGODic with GO ID (string) as the key 
+% and the corresponding GO title as the value.
 for i = 1:1:size(allstrGO,2)
     key = allstrGO{i};
     url = strcat('http://www.ebi.ac.uk/QuickGO/GTerm?id=',key);

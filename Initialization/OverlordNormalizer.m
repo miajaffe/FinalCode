@@ -10,17 +10,11 @@
 % UniProt!  Link:
 % http://www.uniprot.org/uniprot/?query=taxonomy%3a10090&sort=score&format=*
 % hit download
-% UPDATE: If you have MusProt.mat in the working directory, the FASTA data
-% is not needed and the program runs fastA.
-
 
 % [redunancies] = the vector of indeces within axes for redundant protein
 % ID's.
 
-% Form to use if MusProtRaw.mat unavailable
-% function [normOverlord] = OverlordNormalizer(choice,MusProtRaw)
-% Form to use if MusProtRaw.mat is available
-function [normOverlord_shannon,redundancies] = overlord_normalizer_supply_matrix()
+function [normOverlord,redundancies] = OverlordNormalizer(MusProtRaw)
 % Normalized by columns, compare all proteins within one sample.  To do
 % this, we must divide each protein's number of counts by the protein amino
 % acid length, since number of counts scales with number of enzymatic
@@ -29,24 +23,9 @@ function [normOverlord_shannon,redundancies] = overlord_normalizer_supply_matrix
 % normalization is to divide by the number of specific cleavage sites used
 % for the sample processing (e.g. only number of trypsin sites if trypsin
 % is used)
-
-load('MusProt.mat')
+MusProt = fastaread(MusProtRaw);
 load('OverlordMatrix.mat');
 load('axes.mat');
-
-%%
-cutoff = 5;
-cutoff_matrix = OverlordMatrix;
-for mouse_num = 1:3
-    for colonization = 1:3
-        for loc = 1:5
-            [rows] = find(OverlordMatrix(:,mouse_num, colonization, loc) <= cutoff);
-            cutoff_matrix(rows,mouse_num, colonization, loc) = 0;
-        end
-    end
-end
-OverlordMatrix2 = cutoff_matrix;
-%%
 % First step is to acquire the MW of each and every protein.
 proteinID = {MusProt.Header};
 proteinSeq = {MusProt.Sequence};
@@ -64,7 +43,6 @@ noGood = {};
 ggCounter = 0;
 redundancies = [];
 for ii = 1:1:length(colNormFactor)
-    %         fprintf('%d\n',ii)
     % Ignores decoys with '_' in ID name
     if length(strfind(keysProt{ii}, '_')) == 0
         if isKey(lengthMap,keysProt{ii}) == 1
@@ -111,7 +89,7 @@ rowNormFactor = sum(normOverlord,1);
 % normOverlord
 tiledNorm = repmat(rowNormFactor,size(normOverlord,1),1,1,1);
 % Divide normOverlord by the tiledNorm
-normOverlord_shannon = normOverlord ./ tiledNorm;
-save('normOverlord_shannon','normOverlord_shannon')
-
+normOverlordFinal = normOverlord ./ tiledNorm;
+save('normOverlordFinal.mat','normOverlordFinal')
+save('MusProt.mat','MusProt')
 end

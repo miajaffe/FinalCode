@@ -1,5 +1,9 @@
 % Initialization Script
-% Run me!
+% Run me! This script generates the first half of helper files required for
+% all downstream scripts in the Figure_X folders, where X is an integer.
+% Please see the documentation for the individual scripts for a detailed
+% description of each step. It is required to run mouseGO.py right after
+% this script.
 clear all
 close all
 clc
@@ -12,7 +16,7 @@ save('LetterMap.mat','LetterMap');
 clear all
 [normOverlord,redundancies] = OverlordNormalizer('MusProtRaw.fasta');
 clear all
-[normOverlord_shannon,redundancies] = overlord_normalizer_supply_matrix();
+[normOverlord_shannon,redundancies_shannon] = overlord_normalizer_supply_matrix();
 clear all
 run('axesTextGenerator.m');
 clear all

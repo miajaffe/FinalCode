@@ -6,18 +6,15 @@
 % Normalization by rows (across every column), i.e. comparisons can be made
 % for the relative abundance of a given protein across all samples, e.g. we
 % can "compare" protein cadherin-1's relative abundance across all samples
-% (Peptides A to ZZ).  Also required is the MOUSE.fasta downloaded from
-% UniProt!  Link:
-% http://www.uniprot.org/uniprot/?query=taxonomy%3a10090&sort=score&format=*
-% hit download
-% UPDATE: If you have MusProt.mat in the working directory, the FASTA data
+% (Peptides A to ZZ).  
+% Assumed to have MusProt.mat in the working directory; the FASTA data
 % is not needed and the program runs fastA.
 
 
 % [redunancies] = the vector of indeces within axes for redundant protein
 % ID's.
 
-function [normOverlord,redundancies] = OverlordNormalizer(MusProtRaw)
+function [normOverlord_shannon,redundancies_shannon] = overlord_normalizer_supply_matrix()
 % Normalized by columns, compare all proteins within one sample.  To do
 % this, we must divide each protein's number of counts by the protein amino
 % acid length, since number of counts scales with number of enzymatic
@@ -26,9 +23,24 @@ function [normOverlord,redundancies] = OverlordNormalizer(MusProtRaw)
 % normalization is to divide by the number of specific cleavage sites used
 % for the sample processing (e.g. only number of trypsin sites if trypsin
 % is used)
-MusProt = fastaread(MusProtRaw);
+
+load('MusProt.mat')
 load('OverlordMatrix.mat');
 load('axes.mat');
+
+%%
+cutoff = 5;
+cutoff_matrix = OverlordMatrix;
+for mouse_num = 1:3
+    for colonization = 1:3
+        for loc = 1:5
+            [rows] = find(OverlordMatrix(:,mouse_num, colonization, loc) <= cutoff);
+            cutoff_matrix(rows,mouse_num, colonization, loc) = 0;
+        end
+    end
+end
+OverlordMatrix2 = cutoff_matrix;
+%%
 % First step is to acquire the MW of each and every protein.
 proteinID = {MusProt.Header};
 proteinSeq = {MusProt.Sequence};
@@ -44,9 +56,8 @@ colNormFactor = zeros([1 size(axes{1,1},2)]);
 keysProt = axes{1,1};
 noGood = {};
 ggCounter = 0;
-redundancies = [];
+redundancies_shannon = [];
 for ii = 1:1:length(colNormFactor)
-    %         fprintf('%d\n',ii)
     % Ignores decoys with '_' in ID name
     if length(strfind(keysProt{ii}, '_')) == 0
         if isKey(lengthMap,keysProt{ii}) == 1
@@ -55,7 +66,7 @@ for ii = 1:1:length(colNormFactor)
             % To deal with weird reduncancies, search the web to find
             % AA length of equivalent protein
             % http://stackoverflow.com/questions/8061344/how-to-search-for-a-string-in-cell-array-in-matlab
-            redundancies(length(redundancies)+1) = find(ismember(axes{1},keysProt{ii}));
+            redundancies_shannon(length(redundancies_shannon)+1) = find(ismember(axes{1},keysProt{ii}));
             url = strcat('http://www.uniprot.org/uniprot/',keysProt{ii});
             urldata = urlread(url);
             urlposition = findstr(urldata,' AA');
@@ -93,7 +104,7 @@ rowNormFactor = sum(normOverlord,1);
 % normOverlord
 tiledNorm = repmat(rowNormFactor,size(normOverlord,1),1,1,1);
 % Divide normOverlord by the tiledNorm
-normOverlordFinal = normOverlord ./ tiledNorm;
-save('normOverlordFinal.mat','normOverlordFinal')
-save('MusProt.mat','MusProt')
+normOverlord_shannon = normOverlord ./ tiledNorm;
+save('normOverlord_shannon','normOverlord_shannon')
+
 end
