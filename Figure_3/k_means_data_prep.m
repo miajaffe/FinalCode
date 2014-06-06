@@ -12,7 +12,8 @@
 
 %% Call normalization script to normalize values in matrix
 
-% NewOverlord = normalization_mia(OverlordMatrix);
+load('../Initialization/normOverlordFinal.mat'); % load data matrix
+% NewOverlord = normalization_mia(OverlordMatrix); % assign data matrix new name
 % 5/20/14-no longer needed, will use Evan's normalized data in
 % normOverlordF.
 
