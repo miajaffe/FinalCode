@@ -1,4 +1,4 @@
-%% Summary Stats - Pie Charts
+	%% Summary Stats - Pie Charts
 % This file generates the pie charts that describe the percent abundance of
 % each protein. The percent abundance of each protein is calculated, and
 % all proteins with < 2% abundance are grouped into an "other" category in

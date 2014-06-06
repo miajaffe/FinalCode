@@ -2,7 +2,8 @@
 %locations in the GI tract
 
 % Initialization
-load axes.mat, load normOverlord_shannon
+load('../Initialization/axes.mat');
+load('../Initialization/normOverlord_shannon.mat');
 
 protIds=axes{1};
 
