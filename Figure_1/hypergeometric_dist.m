@@ -1,3 +1,6 @@
+% This file calculates the hypergeometric distribution to determine the
+% significance of overlaps in the venn diagrams.
+
 clear all
 close all hidden
 clc

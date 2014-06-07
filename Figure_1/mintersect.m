@@ -1,3 +1,5 @@
+% This code was taken from Matlab file exchange and was used to calculate the core proteome
+
 function runIntersect = mintersect(varargin)
 %MINTERSECT Multiple set intersection.
 %   MINTERSECT(A,B,C,...) when A,B,C... are vectors returns the values 

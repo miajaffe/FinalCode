@@ -1,3 +1,6 @@
+% This code was taken from Matlab File Exchange and was used to calculate
+% the Shannon diversity index for each sample.
+
 function [H,VarH]=index_SaW(A,base)
 %INDEX_SAW Shannon-Wiener index, 
 %  also incorrectly known as Shannon-Weaver,is one of

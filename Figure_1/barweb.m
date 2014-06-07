@@ -1,3 +1,6 @@
+%This code was taken from MatLab file exchange and was used to plot bar
+%graphs with error bars.
+
 function handles = barweb(barvalues, errors, width, groupnames, bw_title, bw_xlabel, bw_ylabel, bw_colormap, gridstatus, bw_legend, error_sides, legend_type)
 
 %
