@@ -8,9 +8,8 @@
 clear all
 close all hidden
 clc
-load('axes.mat');
 load('../Initialization/axes.mat');
-load('normOverlord_shannon.mat')
+load('../Initialization/normOverlord_shannon.mat')
 normOverlord = normOverlord_shannon * 1000;
 %% Reformat matrix so each row is a protein and each column is a sample
 all_samples = [];
@@ -97,7 +96,7 @@ bar_graph = barweb(protein_num_matrix, sem_matrix_prot);
 legend('Germ Free', 'B. Theta', 'Conventional')
 ylabel('Unique Proteins') 
 
-%% anova - cecum - number proteins - GF has significantly more proteins than conventional
+%% anova - cecum - number proteins - GF has  more proteins than conventional
 anova_cecum_nprot = [prot_num_reshaped([1 4 7],4) prot_num_reshaped([2 5 8],4) prot_num_reshaped([3 6 9],4)];
 [p_anova3, table3, stats3] = anova1(anova_cecum_nprot);
 figure

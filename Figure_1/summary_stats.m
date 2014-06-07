@@ -7,9 +7,8 @@
 clear all
 close all hidden
 clc
-load('axes.mat');
-load('normOverlordFinal.mat'); 
-location_labels = axes{4};
+load('../Initialization/axes.mat');
+load('../Initialization/normOverlordFinal.mat');location_labels = axes{4};
 colonization_labels = axes{3};
 normOverlord = normOverlordFinal * 100; 
 proteins = axes{1}' %list of all proteins
